@@ -1,0 +1,41 @@
+##CREATE USER
+CREATE USER USERNAME IDENTIFIED BY PASSWORD  DEFAULT TABLESPACE TABLESPACE_USER TEMP TABLESPACE TEMP PROFILE DEFAULT;
+
+##CHANGE USER TABLESPACE
+ALTER USER USERNAME DEFAULT TABLESPACE NEW_TABLESPACE_NAME;
+
+##CHANGE USER PROFILE
+ALTER USER USERNAME PROFILE NEW_PROFILE;
+
+#LOCK/UNLOCK USER
+ALTER USER USERNAME ACCOUNT LOCK;
+ALTER USER USERNAME ACCOUNT UNLOCK;
+
+##USER GRANTS
+GRANT CONNECT TO USERNAME;
+GRANT CREATE SESSION TO USERNAME;
+GRANT UNLIMITED TABLESPACE TO USERNAME;
+GRANT CREATE 
+GRANT SELECT,INSERT,UPDATE,DELETE ON OWNER.OBJECT_NAME TO USERNAME;
+GRANT ALTER TABLE TO USERNAME;
+ALTER ANY PROCEDURE TO USERNAME;
+
+
+##ALL USERS PRESENT IN DATABASE
+alter session set nls_date_format="dd-mm-yyyy hh24:mi:ss';
+set lines 200 pages 200
+col username for a45
+col account_status for a35
+col profile for a35
+col created for a35
+select username,profile,account_status,default_tablesapce from dba_users where ORACLE_MAINTAINED='N';
+
+##CHECK FOR A SPECIFIC USER
+alter session set nls_date_format="dd-mm-yyyy hh24:mi:ss';
+set lines 200 pages 200
+col username for a45
+col account_status for a35
+col profile for a35
+col created for a35
+select username,profile,account_status,default_tablesapce from dba_users where USERNAME=(&USERNAME);
+
