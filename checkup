@@ -38,6 +38,9 @@ SELECT dg.name AS "DISK GROUP", d.name AS "NAME",
 ROUND(d.total_mb / 1024, 2) AS "GB",ROUND(d.free_mb / 1024, 2) AS "AVAILABLE GB",ROUND((d.total_mb - d.free_mb) / d.total_mb * 100, 2) AS "USED%"
 FROM v$asm_disk d JOIN v$asm_diskgroup dg ON (d.group_number = dg.group_number)ORDER BY dg.name, d.name
 /
+##File system utilization
+!df -gt 
+!df -h
 ##Tablespace utilization
 set colsep |
 set linesize 100 pages 100 trimspool on numwidth 14 
